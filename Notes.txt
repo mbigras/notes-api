@@ -1,0 +1,32 @@
+Rails Notes API notes.txt
+
+Overview
+
+Checking if dependencies are met in the jadesystems/rails5 Vagrant box
+
+Links
+
+https://github.com/lcreid/rails-5-jade
+https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
+
+Checking if dependencies are met in the jadesystems/rails5 Vagrant box
+
+ruby --version
+ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
+rails --version
+Rails 5.0.1
+
+vagrant up
+vagrant ssh web1 -c 'ruby --version; rails --version'
+ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
+Rails 5.0.1
+Connection to 127.0.0.1 closed.
+
+note: This vagrant box still requires a massive bundle install
+
+rails new someapp
+cd someapp
+rails s &
+
+curl -sI http://192.168.22.21:3000/ | awk NR==1
+HTTP/1.1 200 OK

@@ -57,6 +57,13 @@ def provision_control_script(hosts)
   SCRIPT
 end
 
+def provision_web_script
+  <<~SCRIPT
+  apt-get update -y
+  apt-get install -y python
+  SCRIPT
+end
+
 def build_environment(hosts)
   Vagrant.configure('2') do |config|
     config.ssh.insert_key = false
@@ -73,9 +80,10 @@ def build_environment(hosts)
 
     hosts.select { |h,_| h.match(/web/) }.each do |h, ip|
       config.vm.define h do |t|
-          t.vm.box = 'bento/ubuntu-16.04'
+          t.vm.box = 'jadesystems/rails5'
           t.vm.hostname = h
           t.vm.network(:private_network, ip: ip)
+          t.vm.provision('shell', inline: provision_web_script)
       end
     end
   end
