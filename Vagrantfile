@@ -28,7 +28,7 @@ end
 def provision_control_script(hosts)
   <<~SCRIPT
   apt-add-repository -y ppa:ansible/ansible
-  apt-get update -y
+  apt-get update
   apt-get install -y ansible
 
   cat <<SSH_CONFIG > /etc/ssh/ssh_config
@@ -59,7 +59,7 @@ end
 
 def provision_web_script
   <<~SCRIPT
-  apt-get update -y
+  apt-get update
   apt-get install -y python
   SCRIPT
 end
